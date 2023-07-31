@@ -10,7 +10,8 @@ export const styles = {
     text:{
         width:"400px",
         height:"5rem",
-        lineHeight: "1.6em"
+        lineHeight: "1.6em",
+        padding: 1,
     },
     btnLogin:{
         lineHeight: "2.55rem",
@@ -24,5 +25,12 @@ export const styles = {
     },
     btnText:{
         color:"#fff",
+    },
+    message: {
+        width: 400, 
+        height:100, 
+        borderColor:"#909090", 
+        borderWidth:1.3, 
+        marginBottom:"10px"
     }
 }

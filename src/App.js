@@ -1,57 +1,75 @@
 import React from 'react';
-import { Box, TextField , Button, TextareaAutosize } from '@material-ui/core'
+import { Box, CssBaseline, TextField , Button } from '@material-ui/core'
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 import { styles } from './styles';
 
+export default function App(){
 
-function App(){
-
-  const onHandleSubmit= (e) => {}
+    const sendEmail= (e) => {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_ip0sttu', 'template_u09d72k', e.target, 'epwEA6jtM-fzbhBRM')
+          .then((result) => {
+            console.log(result.text);
+            Swal.fire({
+              icon:'success',
+              title:'Message sent sucessfully'
+            })
+          }, (error) => {
+            console.log(error.text);
+            Swal.fire({
+              icon:'error',
+              title:'Something went wrong',
+              text:error.text,
+            })
+          });
+          e.target.reset();
+      };
 
   return (
     <>
-      <Box sx = {styles.loginscreen}>
-        <form  onSubmit={onHandleSubmit}>
+    <CssBaseline />
+      <Box style={styles.loginscreen}>
+        <form  onSubmit={sendEmail}>
             <Box>
                  <h2>Contact Form</h2>
-                <TextField fullWidth sx={styles.text}
+                <TextField fullWidth style={styles.text}
                   type="text"
                   label="Name"
                   required
                   name="user_name"
+                  variant="outlined"
                 />
             </Box>
-
             <Box>
-                <TextField sx={styles.text}
+                <TextField fullWidth style={styles.text}
                     type="email"
                     label="Email"
                     name="user_email"
                     required
+                    variant="outlined"
                 />
             </Box>
 
             <Box >
-                <TextareaAutosize sx={styles.text}
+                <TextField 
+                    multiline
+                    style={styles.message}
                     type="text"
-                     label="Message"
+                    label="Message"
                     required
                     name="user_message"
                     variant="outlined"
                     placeholder='Message here...'
-                    style={{ width: 400 , height:100, borderColor:"#909090", borderWidth:1.3, 
-                    marginBottom:"10px"}}
                 />
             </Box>
 
-            <Box sx={styles.btnLogin}>
-                <Button type='submit' sx={styles.btnText}>SUBMIT MESSAGE</Button>
+            <Box style={styles.btnLogin}>
+                <Button type='submit' style={styles.btnText}>SUBMIT MESSAGE</Button>
             </Box> 
         </form>
     </Box>
     </>
   )
 }
-
-export default App;
