@@ -1,5 +1,6 @@
 {
   "name": "newsletter",
+  "homepage": "https://anthonysingiser.github.io/newsletter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
